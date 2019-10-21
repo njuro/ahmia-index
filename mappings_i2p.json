@@ -90,7 +90,6 @@
     }
   },
   "mappings": {
-    "_doc": {
       "properties": {
         "url": {
           "type": "text",
@@ -183,6 +182,5 @@
           "type": "long"
         }
       }
-    }
   }
 }

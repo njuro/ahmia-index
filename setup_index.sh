@@ -9,5 +9,6 @@ fi
 # Parse the environment variables from .env file, ignoring the comments
 export $(cat .env | grep -v ^# | xargs)
 
+sleep 30
 curl -XPUT -i "${ES_URL}tor/" -H 'Content-Type: application/json' -d "@./mappings_tor.json"
 curl -XPUT -i "${ES_URL}i2p/" -H 'Content-Type: application/json' -d "@./mappings_i2p.json"
