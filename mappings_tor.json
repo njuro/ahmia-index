@@ -121,7 +121,7 @@
     }
   },
   "mappings": {
-    "doc": {
+    "_doc": {
       "properties": {
         "url": {
           "type": "text",
