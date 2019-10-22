@@ -12,6 +12,19 @@ export $(cat .env | grep -v ^# | xargs)
 
 
 ### Problem 1: ###
+# Fix Elasticsearch quota
+curl -XPUT "${ES_URL}_cluster/settings" -H 'Content-Type: application/json' --data '
+{
+  "transient": {
+    "cluster.routing.allocation.disk.watermark.low": "3gb",
+    "cluster.routing.allocation.disk.watermark.high": "2gb",
+    "cluster.routing.allocation.disk.watermark.flood_stage": "1gb",
+    "cluster.info.update.interval": "1m"
+  }
+}
+'
+
+### Problem 2: ###
 # sometimes, e.g during re-indexing, or low disk space, indices are switched to read-only, undo it
 # tor
 curl -XPUT "${ES_URL}tor/_settings" --data '{"index": {"blocks": {"read_only": "false"}}}' -H 'Content-Type: application/json'
